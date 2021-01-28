@@ -29,11 +29,11 @@ class PieChartTests: FBSnapshotTestCase
         dataSet.drawIconsEnabled = false
         dataSet.iconsOffset = CGPoint(x: 0, y: 20.0)
         
-        dataSet.colors = ChartColorTemplates.vordiplom()
-            + ChartColorTemplates.joyful()
-            + ChartColorTemplates.colorful()
-            + ChartColorTemplates.liberty()
-            + ChartColorTemplates.pastel()
+        dataSet.colors = ChartColorTemplates.vordiplom
+            + ChartColorTemplates.joyful
+            + ChartColorTemplates.colorful
+            + ChartColorTemplates.liberty
+            + ChartColorTemplates.pastel
             + [UIColor(red: 51/255, green: 181/255, blue: 229/255, alpha: 1)]
         
         chart = PieChartView(frame: CGRect(x: 0, y: 0, width: 480, height: 350))
