@@ -378,8 +378,18 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                 // Set the color for the currently drawn value. If the index is out of bounds, reuse colors.
                 context.setFillColor(dataSet.color(atIndex: j).cgColor)
             }
-            
-            context.fill(barRect)
+
+            // BEGIN CUSTOMIZATION - vadimbelyaev
+            // The original library used to just draw a rectangle.
+            // Instead, this patched version allows setting a custom corner radius.
+            if dataSet.cornerRadii == .zero {
+                context.fill(barRect)
+            } else {
+                let path = UIBezierPath(roundedRect: barRect, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: dataSet.cornerRadii, height: dataSet.cornerRadii))
+                context.addPath(path.cgPath)
+                context.drawPath(using: .fill)
+            }
+            // END CUSTOMIZATION - vadimbelyaev
             
             if drawBorder
             {
